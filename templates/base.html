@@ -3,8 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/tailwindcss">
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap');
+    </style>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            fontFamily: { poppins: ['Poppins', 'sans-serif'] },
+            fontWeight: { normal: '400', bold: '600', bolder: '700', extrabold: '900' },
+          }
+        }
+    </script>
     <title>{% block title %} {% endblock %}</title>
 </head>
 <body>

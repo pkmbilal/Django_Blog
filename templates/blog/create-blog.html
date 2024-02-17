@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Create Blog{% endblock %}
+
+{% block content %}
+<div class="w-full h-screen flex flex-col items-center justify-center">
+    <div class="w-1/2 px-10">
+        <h1 class="text-5xl text-blue-500 font-bold text-left font-poppins">New Blog</h1>
+    </div>
+    <form method="post" class="w-1/2 p-10">
+        {% csrf_token %}
+        <div class="mb-4">
+            {{form.title}}
+        </div>
+        <div class="flex gap-4 mb-4">
+            {{form.author}}
+            {{form.tags}}
+        </div>
+        <div class="mb-4">
+            {{form.content}}
+        </div>
+        <div class="flex gap-2 mb-4">
+            <h1 class="text-lg font-bold font-poppins">Publish</h1> {{form.is_published}}
+        </div>
+        <button type="submit" class="w-full bg-blue-500 text-white px-4 py-2 hover:bg-blue-700 font-bold font-poppins">SUBMIT</button>
+    </form>
+</div>
+{% endblock %}

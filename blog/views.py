@@ -1,11 +1,14 @@
 from django.shortcuts import render
 from .models import *
+from .forms import *
+
 
 
 # List Published Blogs
-def home(request):
+def Home(request):
     return render(request, 'blog/index.html')
 
 # Create Blog
-def CreateBlog(request):
-    pass
+def Createblog(request):
+    form = CreateBlog()
+    return render(request, 'blog/create-blog.html',{'form':form})
