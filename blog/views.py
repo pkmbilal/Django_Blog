@@ -1,5 +1,11 @@
 from django.shortcuts import render
+from .models import *
 
-# Create your views here.
+
+# List Published Blogs
 def home(request):
-    return render(request, 'index.html')
+    return render(request, 'blog/index.html')
+
+# Create Blog
+def CreateBlog(request):
+    pass
