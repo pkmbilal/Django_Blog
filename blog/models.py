@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from tinymce.models import HTMLField
 
 
 class Author(models.Model):
@@ -19,8 +20,8 @@ class Tag(models.Model):
 
 class Blog(models.Model):
     title = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True, null=False, blank=False)
-    content = models.TextField(blank=False, null=False)
+    slug = models.SlugField(null=True, blank=True)
+    content = HTMLField()
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     tags = models.ManyToManyField(Tag)
     is_published = models.BooleanField(default=False)
