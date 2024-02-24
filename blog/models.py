@@ -14,6 +14,7 @@ class Author(models.Model):
     
 class Tag(models.Model):
     name = models.CharField(max_length=50, unique=True)
+    image = models.ImageField(upload_to='tags')
 
     def __str__(self):
         return self.name
@@ -21,6 +22,7 @@ class Tag(models.Model):
 class Blog(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(null=True, blank=True)
+    image = models.ImageField(upload_to='blog')
     content = HTMLField()
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     tags = models.ManyToManyField(Tag)

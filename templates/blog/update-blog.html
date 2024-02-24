@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}Create Blog{% endblock %}
+{% block title %}Update Blog{% endblock %}
 
 {% block content %}
-<div class="w-full h-full flex flex-col items-center my-8">
+<div class="w-full h-screen flex flex-col items-center justify-center">
     <div class="w-1/2 px-10">
-        <h1 class="text-5xl text-blue-500 font-bold text-left font-poppins">New Blog</h1>
+        <h1 class="text-5xl text-green-500 font-bold text-left font-poppins">Update Blog</h1>
     </div>
-    <form method="post" class="w-1/2 p-10">
+    <form action="url 'update-blog' slug" method="post" class="w-1/2 p-10">
         {% csrf_token %}
         <div class="mb-4">
             {{form.title}}
