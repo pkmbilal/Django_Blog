@@ -6,7 +6,8 @@ from .forms import *
 
 # List Published Blogs
 def Home(request):
-    return render(request, 'blog/index.html')
+    tags = Tag.objects.all()
+    return render(request, 'blog/index.html', {'tags':tags})
 
 # Create Blog
 def Createblog(request):
