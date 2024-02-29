@@ -12,11 +12,11 @@ def Home(request):
 # Create Blog
 def Createblog(request):
     if request.method == 'POST':
-        form = CreateBlog(request.POST)
+        form = CreateBlogForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('home')
-    form = CreateBlog()
+    form = CreateBlogForm()
     return render(request, 'blog/create-blog.html',{'form':form})
 
 # Update Blog
