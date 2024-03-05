@@ -1,13 +1,20 @@
-from django.shortcuts import render,redirect
-from .models import *
-from .forms import *
+from django.shortcuts import render,redirect,get_object_or_404
+from .models import Tag, Blog
+from .forms import CreateBlogForm, UpdateBlogForm
 
 
 
 # List Published Blogs
 def Home(request):
     tags = Tag.objects.all()
-    return render(request, 'blog/index.html', {'tags':tags})
+    blogs = Blog.objects.filter(is_published=True)
+    
+    context = {
+        'tags': tags,
+        'blogs': blogs,
+    }
+    return render(request, 'blog/index.html', context)
+
 
 # Create Blog
 def Createblog(request):
@@ -21,11 +28,11 @@ def Createblog(request):
 
 # Update Blog
 def Updateblog(request, slug):
-    blog = Blog.objects.filter(slug=slug)
+    blog = get_object_or_404(Blog, slug=slug)
     if request.method == 'POST':
-        form = request.POST(request.post, instance=blog)
+        form = UpdateBlogForm(request.POST, request.FILES, instance=blog)
         if form.is_valid():
             form.save()
             return redirect('home')
-    form = request.post(instance=blog)
+    form = UpdateBlogForm(instance=blog)
     return render(request,'blog/update-blog.html',{'form':form})

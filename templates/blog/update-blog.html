@@ -7,13 +7,17 @@
     <div class="w-1/2 px-10">
         <h1 class="text-5xl text-green-500 font-bold text-left font-poppins">Update Blog</h1>
     </div>
-    <form action="url 'update-blog' slug" method="post" class="w-1/2 p-10">
+    <form enctype="multipart/form-data" method="post" class="w-1/2 p-10">
         {% csrf_token %}
         <div class="mb-4">
             {{form.title}}
         </div>
         <div class="flex gap-4 mb-4">
             {{form.author}}
+        </div>
+        <div class="flex gap-4 mb-4 px-4">
+            <h1 class="text-lg">Select an Image</h1>
+            {{form.image}}
         </div>
         <div class="flex gap-4 mb-4">
             {{form.tags_input}}
