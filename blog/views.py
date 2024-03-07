@@ -6,12 +6,11 @@ from .forms import CreateBlogForm, UpdateBlogForm
 
 # List Published Blogs
 def Home(request):
-    tags = Tag.objects.all()
-    blogs = Blog.objects.filter(is_published=True)
-    
+    blog = Blog.objects.filter(is_published=True)
+    tag = Tag.objects.all()
     context = {
-        'tags': tags,
-        'blogs': blogs,
+        'tags': tag,
+        'blogs': blog,
     }
     return render(request, 'blog/index.html', context)
 
@@ -36,3 +35,13 @@ def Updateblog(request, slug):
             return redirect('home')
     form = UpdateBlogForm(instance=blog)
     return render(request,'blog/update-blog.html',{'form':form})
+
+# Blog Detail
+def Blogdetail(request, slug):
+    blog = get_object_or_404(Blog, slug=slug)
+    tags = blog.tags.all()
+    context = {
+        'blog': blog,
+        'tags': tags,
+    }
+    return render(request, 'blog/blog-detail.html', context)
