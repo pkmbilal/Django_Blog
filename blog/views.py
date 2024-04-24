@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect,get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .models import Tag, Blog
 from .forms import CreateBlogForm, UpdateBlogForm
 
@@ -16,6 +17,7 @@ def Home(request):
 
 
 # Create Blog
+@login_required
 def Createblog(request):
     if request.method == 'POST':
         form = CreateBlogForm(request.POST, request.FILES)
@@ -26,6 +28,7 @@ def Createblog(request):
     return render(request, 'blog/create-blog.html',{'form':form})
 
 # Update Blog
+@login_required
 def Updateblog(request, slug):
     blog = get_object_or_404(Blog, slug=slug)
     if request.method == 'POST':
